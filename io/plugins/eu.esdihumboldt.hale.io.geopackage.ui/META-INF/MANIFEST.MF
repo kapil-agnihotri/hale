@@ -11,3 +11,4 @@ Require-Bundle: eu.esdihumboldt.hale.ui,
  eu.esdihumboldt.hale.common.core;bundle-version="4.0.0",
  org.eclipse.ui;bundle-version="3.116.0",
  eu.esdihumboldt.hale.ui.util;bundle-version="4.0.0"
+Export-Package: eu.esdihumboldt.hale.io.geopackage.ui
