@@ -36,10 +36,9 @@ import org.eclipse.swt.widgets.FileDialog;
 public class ExtendedFileFieldEditor extends FileFieldEditor {
 
 	private String[] extensions;
-
 	private String[] names;
-
 	private final int style;
+	private static final String LINE_SEPARATOR = "line.separator";
 
 	/**
 	 * Create a file field editor
@@ -129,7 +128,7 @@ public class ExtendedFileFieldEditor extends FileFieldEditor {
 		else {
 			d.forEach(file -> {
 				absolutePaths.append(file.getAbsolutePath());
-				absolutePaths.append("\n");
+				absolutePaths.append(System.getProperty(LINE_SEPARATOR));
 			});
 		}
 		return absolutePaths.toString();
@@ -198,7 +197,6 @@ public class ExtendedFileFieldEditor extends FileFieldEditor {
 				}
 			});
 		}
-
 		return files;
 	}
 
@@ -292,9 +290,15 @@ public class ExtendedFileFieldEditor extends FileFieldEditor {
 		setFilterNames(filters.toArray(new String[filters.size()]));
 	}
 
+	/**
+	 * Method to return list of filepaths from filepath string delimited by
+	 * <code>System.getProperty(LINE_SEPARATOR)</code>.
+	 * 
+	 * @return list of file paths after splitting.
+	 */
 	public List<String> getStringValues() {
 		String stringValue = getStringValue();
-		String[] split = stringValue.split("\n");
+		String[] split = stringValue.split(System.getProperty(LINE_SEPARATOR));
 
 		List<String> collect = Arrays.asList(split).stream().filter(s -> !s.isEmpty())
 				.collect(Collectors.toList());
